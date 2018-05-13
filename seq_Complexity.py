@@ -4,10 +4,9 @@ import glob
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-#import seaborn as sns
 import sys
 
-#function to count the kmers
+#count kmers
 def count_kmers(seq, k):
     counts = {}
     for i in range(len(seq) - k + 1):
@@ -17,7 +16,7 @@ def count_kmers(seq, k):
         counts[kmer] += 1
     return counts
 
-#function to find the wrong DNA
+#find the wrong DNA base letters
 def check_seq_format(seq):
     bad_chars = {}
     for i in seq:
@@ -26,14 +25,14 @@ def check_seq_format(seq):
             else: bad_chars[ i ] = 1
     if bad_chars != {}: return bad_chars
 
-#function to export a table(kmers, observed, possible) in .csv format per each sequence name
+#create a df table(kmers, observed, possible) in .csv format for each sequence
 def generate_file(file_name, detail_data, seq_name):
     data = pd.DataFrame([[i[0], i[1], i[2]] for i in detail_data], columns=['k-mers', 'observed', 'possible'])
     #print('data-frame',detail_data)
     data.to_csv('output/data/'+ file_name + '_' + seq_name+'.csv', index=False)
     #return data
 
-#function to generate a linguistic complexity graph of all sequence name
+#generate linguistic complexity graph
 def generate_complexity_graph(file_name, seq_name_list, linguistic_complexity_list):       
     plt.plot(seq_name_list, linguistic_complexity_list, 'ro')
     plt.xlabel('Sequence Name')
@@ -43,7 +42,7 @@ def generate_complexity_graph(file_name, seq_name_list, linguistic_complexity_li
     plt.savefig('output/image/'+graph_name)
     #return data
 
-#function to generate comparison of possible and observed kmers of all sequence name
+#generate comparison of possible and observed kmers of all sequences
 def generate_kmers_graph(file_name, seq_name_list, possible_total_list, observed_total_list):
     fig, ax = plt.subplots()
     index = np.arange(len(seq_name_list))
@@ -67,7 +66,7 @@ def generate_kmers_graph(file_name, seq_name_list, possible_total_list, observed
     graph_name = file_name + '_kmers.png'
     plt.savefig('output/image/'+graph_name)
 
-#function to generate wrong dana per each sequence name 
+#generate wrong DNA for each sequence name 
 def generate_wrong_dna_graph(file_name, data, seq_name):
     plt.clf()
     plt.bar(range(len(data)), list(data.values()), align='center')

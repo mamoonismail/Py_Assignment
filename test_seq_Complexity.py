@@ -3,7 +3,7 @@
 from seq_Complexity import count_kmers
 import pytest
 
-#avoid repetition by loading data in advance 
+# To avoid repetition 
 @pytest.fixture 
 
 def seq():	
