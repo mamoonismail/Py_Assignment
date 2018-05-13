@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from index import count_kmers
+from seq_Complexity import count_kmers
 import pytest
 
 #avoid repetition by loading data in advance 
