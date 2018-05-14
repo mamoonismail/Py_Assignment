@@ -29,7 +29,7 @@ def check_seq_format(seq):
 def generate_file(file_name, detail_data, seq_name):
     data = pd.DataFrame([[i[0], i[1], i[2]] for i in detail_data], columns=['k-mers', 'observed', 'possible'])
     #print('data-frame',detail_data)
-    data.to_csv('output/data/'+ file_name + '_' + seq_name+'.csv', index=False)
+    data.to_csv('Data/'+ file_name + '_' + seq_name+'.csv', index=False)
     #return data
 
 #generate linguistic complexity graph
@@ -39,7 +39,7 @@ def generate_complexity_graph(file_name, seq_name_list, linguistic_complexity_li
     plt.ylabel('Linguistic Complexity')
     #plt.show()
     graph_name = file_name + '_complexity.png'
-    plt.savefig('output/image/'+graph_name)
+    plt.savefig('Plots/'+graph_name)
     #return data
 
 #generate comparison of possible and observed kmers of all sequences
@@ -64,7 +64,7 @@ def generate_kmers_graph(file_name, seq_name_list, possible_total_list, observed
     plt.tight_layout()
     #plt.show()
     graph_name = file_name + '_kmers.png'
-    plt.savefig('output/image/'+graph_name)
+    plt.savefig('Plots/'+graph_name)
 
 #generate wrong DNA for each sequence name 
 def generate_wrong_dna_graph(file_name, data, seq_name):
@@ -72,7 +72,7 @@ def generate_wrong_dna_graph(file_name, data, seq_name):
     plt.bar(range(len(data)), list(data.values()), align='center')
     plt.xticks(range(len(data)), list(data.keys()))
     graph_name = 'wrong_dna_'+ file_name + '_' + seq_name + '.png'
-    plt.savefig('output/image/'+graph_name)
+    plt.savefig('Plots/'+graph_name)
 
 #main function
 if __name__ == "__main__":
