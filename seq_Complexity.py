@@ -74,9 +74,9 @@ def generate_wrong_dna_graph(file_name, data, seq_name):
     graph_name = 'wrong_dna_'+ file_name + '_' + seq_name + '.png'
     plt.savefig('Plots/'+graph_name)
 
-#main function
+#function
 if __name__ == "__main__":
-    #get a input variable as a file name
+    #input variable as a file name
     file_name=sys.argv[1]    
     if file_name in glob.glob('*.fasta'):
         f = open(file_name,'r')
@@ -94,21 +94,20 @@ if __name__ == "__main__":
                     seq_name_list.append(seq_name)
                 else:
                     seq = line.rstrip()
-                    #check per each sequence name, the sequence format
+                    #for each sequence name, check sequence format
                     seq_format = check_seq_format(seq)  
                     k_list = []
                     possible_list = []
                     observed_list = []
                     for k in range(1,len(seq)+1):
-                        #check the possible kmers
+                        #check possible kmers
                         if 4**k < len(seq):
                             possible = 4**k 
                         else:
                             possible = len(seq) - k + 1                         
-                        #get the kmers
+                        #get kmers
                         counts = count_kmers(seq, k)
-                        #print(counts)
-                        #get the observed kmers  
+                        #get observed kmers  
                         observed = len(counts)
                         k_list.append(k)
                         possible_list.append(possible)                          
@@ -117,17 +116,16 @@ if __name__ == "__main__":
                     possible_total = sum(possible_list)  
                     possible_list.append(possible_total)
                     possible_total_list.append(possible_total)
-                    #get the total observed kmers
+                    #get total observed kmers
                     observed_total = sum(observed_list)
                     observed_list.append(observed_total)
                     observed_total_list.append(observed_total)
                     k_list.append('Total'); 
-                    #merge kmers-data per each sequence name
+                    #merge kmers-data for each sequence name
                     detail_data = list(zip(k_list, observed_list, possible_list))
-                    #print('list',detail_data)
-                    #generate file per each sequence name                      
+                    #generate file for each sequence name                      
                     detail = generate_file(file_name, detail_data, seq_name)
-                    #get the linguistic complexity
+                    #get linguistic complexity
                     linguistic_complexity = observed_total/possible_total
                     linguistic_complexity_list.append(linguistic_complexity)
         #print(linguistic_complexity_list) 
