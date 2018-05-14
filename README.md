@@ -13,6 +13,9 @@ fram for each species in (csv format) and (png format)
 
 5- test_seq_Complexity to test the script before excuting
 
-### How to run the script
+### How to run the script and test
 
-Through the terminal type (python seq_Complexity.py nd2.fasta)
+1- Run the script through terminal (ANACONDA) type: python seq_Complexity.py nd2.fasta
+
+2- Run the test through terminal (ANACONDA) type: pytest seq_Complexity.py
+
